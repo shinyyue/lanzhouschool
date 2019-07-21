@@ -1,0 +1,96 @@
+@df-color: #0849a3;
+@active-color: rgba(25, 158, 216, 1);
+
+.containner {
+    width: 1250px;
+    margin: 0 auto;
+}
+
+.clamp-line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.clamp-lines(@lines) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: @lines;
+    -webkit-box-orient: vertical;
+}
+
+.el-pagination.is-background .btn-next,
+.el-pagination.is-background .btn-prev,
+.el-pagination.is-background .el-pager li {
+    width: 30px;
+    height: 30px;
+    background: #d7d7d7;
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background: #fff;
+    color: #333;
+}
+
+
+.app-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .app-inner-right {
+        flex: 1;
+        margin-left: 20px;
+
+        .news-img {
+            width: 100%;
+        }
+
+        .news-title {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .news-content {
+            margin-top: 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-indent: 28px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .news-common-time {
+            padding-bottom: 20px;
+            border-bottom: 1px solid #999;
+            color: #666;
+            text-align: center;
+        }
+    }
+}
+
+.my-pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+
+    >button {
+        height: 30px;
+        padding: 0 10px;
+        color: #333;
+        background: #d7d7d7;
+        outline: none;
+
+        &.disable {
+            color: #999;
+        }
+    }
+}
