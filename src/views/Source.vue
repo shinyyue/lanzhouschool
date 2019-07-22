@@ -20,10 +20,10 @@
                                    :current-page="pageCount"
                                    @current-change="changeCount"
                                    layout="prev, pager, next"
-                                   :total="1000">
+                                   :total="total">
                     </el-pagination>
-                    <button :class="{'disable': pageCount === 100}"
-                            :disabled="pageCount === 100">尾页</button>
+                    <button :class="{'disable': pageCount === total}"
+                            :disabled="pageCount === total">尾页</button>
                 </div>
             </div>
         </div>
@@ -31,24 +31,14 @@
 </template>
 
 <script>
+import Vue from 'vue'
+
 export default {
     data() {
         return {
-            sourceList: [
-                {
-                    name: 'yj7型电液转辙机'
-                },
-                {
-                    name: 'yj7型电液转辙机'
-                },
-                {
-                    name: 'yj7型电液转辙机'
-                },
-                {
-                    name: 'yj7型电液转辙机'
-                }
-            ],
-            pageCount: 1
+            sourceList: [],
+            pageCount: 1,
+            total: 0
         }
     },
     methods: {
@@ -57,7 +47,25 @@ export default {
         },
         changeCount(count) {
             this.pageCount = count
+            this.getList()
+        },
+        getList() {
+            const data = {
+                page: this.pageCount,
+                rows: 12,
+                collegeId: 0,
+                columnId: 6
+            }
+            Vue.axios
+                .post(this.API_ROOT + 'columnContent/listFront', data)
+                .then(res => {
+                    this.sourceList = (res.data && res.data.items) || []
+                    this.total = (res.data && res.data.total) || 0
+                })
         }
+    },
+    mounted() {
+        this.getList()
     }
 }
 </script>

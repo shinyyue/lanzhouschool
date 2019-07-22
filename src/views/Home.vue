@@ -122,12 +122,12 @@
                 <div class="project-title">
                     <span>经典案例 | 视频集锦</span>
                     <div class="project-change">
-                        <img :src="sourceIndex === 1 ? leftUndoIcon : leftDoIcon"
+                        <img :src="videoIndex === 1 ? leftUndoIcon : leftDoIcon"
                              class="change-button"
-                             @click="changeSourceLast()">
-                        <img :src="sourceIndex === sourceList.length  ? rightUndoIcon : rightDoIcon"
+                             @click="changeVideoLast()">
+                        <img :src="videoIndex === videoList.length  ? rightUndoIcon : rightDoIcon"
                              class="change-button"
-                             @click="changeSourceNext()">
+                             @click="changeVideoNext()">
                     </div>
                 </div>
                 <el-carousel :autoplay="false"
@@ -135,8 +135,8 @@
                              :loop="false"
                              arrow="never"
                              height="300"
-                             ref="sourceCarousel">
-                    <el-carousel-item v-for="(item, index) in sourceList"
+                             ref="videoCarousel">
+                    <el-carousel-item v-for="(item, index) in videoList"
                                       :key="index"
                                       class="project-list">
                         <div class="project-item"
@@ -205,6 +205,9 @@ export default {
             newsList: [],
             rulesList: [],
             sourceIndex: 1,
+            videoList: [],
+            videoIndex: 1,
+            videoPage: 1,
             leftUndoIcon: require('../../static/images/home_arrow_left_undo.png'),
             rightUndoIcon: require('../../static/images/home_arrow_right_undo.png'),
             leftDoIcon: require('../../static/images/home_arrow_left_do.png'),
@@ -217,6 +220,7 @@ export default {
         this.getNewsList()
         this.getRulesList()
         this.getSourceList()
+        this.getVideoList()
     },
     methods: {
         getBannerList() {
@@ -293,6 +297,30 @@ export default {
                     }
                 })
         },
+        getVideoList() {
+            const data = {
+                page: this.videoPage,
+                rows: 3,
+                collegeId: 0,
+                columnId: 7
+            }
+            Vue.axios
+                .post(this.API_ROOT + 'columnContent/listFront', data)
+                .then(res => {
+                    if (res.data && res.data.items) {
+                        if (res.data && res.data.items) {
+                            if (res.data.items.length === 3) {
+                                this.videoPage++
+                                this.getVideoList()
+                            }
+                            this.videoList = [
+                                ...this.videoList,
+                                ...[res.data.items]
+                            ]
+                        }
+                    }
+                })
+        },
         getRulesList() {
             Vue.axios
                 .get(this.API_ROOT + 'crmColleController/queryGzzd')
@@ -343,6 +371,17 @@ export default {
                 return
             this.sourceIndex++
             this.$refs.sourceCarousel.activeIndex = this.sourceIndex - 1
+        },
+        changeVideoLast() {
+            if (this.videoIndex === 1) return
+            this.videoIndex--
+            this.$refs.videoCarousel.activeIndex = this.videoIndex - 1
+        },
+        changeVideoNext() {
+            if (this.videoIndex === this.videoList.length && this.videoIndex)
+                return
+            this.videoIndex++
+            this.$refs.videoCarousel.activeIndex = this.videoIndex - 1
         },
         jumpToCenter() {
             this.$router.push('/center')

@@ -4,13 +4,16 @@
             <ul class="center-list">
                 <li class="center-item"
                     v-for="(v, k) in centerList"
-                    :key="k">{{v.name}}</li>
+                    :key="k"
+                    @click="jumpToCollege(v.id)">{{v.collegeName}}</li>
             </ul>
         </div>
     </common>
 </template>
-
+x
 <script>
+import Vue from 'vue'
+
 export default {
     data() {
         return {
@@ -30,7 +33,25 @@ export default {
             ]
         }
     },
-    methods: {}
+    methods: {
+        getCollegeList() {
+            const data = {
+                page: 1,
+                rows: 10000
+            }
+            Vue.axios
+                .post(this.API_ROOT + 'crmColleController/queryList', data)
+                .then(res => {
+                    this.centerList = (res.data && res.data.items) || []
+                })
+        },
+        jumpToCollege() {
+            window.location.href = 'http://39.104.97.6:8020/'
+        }
+    },
+    mounted() {
+        this.getCollegeList()
+    }
 }
 </script>
 
@@ -48,6 +69,11 @@ export default {
             width: 32%;
             text-align: center;
             height: 70px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            padding: 0 20px;
+            box-sizing: border-box;
             line-height: 70px;
             font-size: 18px;
             background: #99ccff;

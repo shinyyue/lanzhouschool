@@ -9,20 +9,9 @@
                     <img class="news-img"
                          src="../../static/images/news_img.png">
                     <div class="news-title">关于我们</div>
-                    <div class="news-common-time">发布时间:2019-04-08 17:49:20</div>
-                    <div class="news-content">
-                        <p>地 址：兰州市安宁区安宁西路88号兰州交通大学第六教学楼</p>
-                        <p>电 话：0931-4957181
-                        </p>
-                        <p>
-                            传 真：0931-4957181
-                        </p>
-                        <p>
-                            手 机：18109463254
-                        </p>
-                        <p>
-                            联 系 人：王老师
-                        </p>
+                    <div class="news-common-time">发布时间:{{new Date(details.updateTime).format('yyyy-MM-dd hh:mm:ss')}}</div>
+                    <div class="news-content"
+                         v-html="details.content">
                     </div>
                 </div>
                 <!-- 中心风貌 -->
@@ -35,17 +24,37 @@
 </template>
 
 <script>
+import Vue from 'vue'
+
 export default {
     data() {
         return {
             menuList: [],
+            details: {},
             currentIndex: 0
         }
     },
     methods: {
         changeMenu(index) {
             this.currentIndex = index
+        },
+        getList() {
+            const data = {
+                page: 1,
+                rows: 12,
+                collegeId: 0,
+                columnId: 19
+            }
+            Vue.axios
+                .post(this.API_ROOT + 'columnContent/listFront', data)
+                .then(res => {
+                    this.details =
+                        (res.data && res.data.items && res.data.items[0]) || {}
+                })
         }
+    },
+    mounted() {
+        this.getList()
     }
 }
 </script>

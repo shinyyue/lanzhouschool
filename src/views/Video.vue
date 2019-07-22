@@ -1,17 +1,17 @@
 <template>
     <common id="video">
         <div class="app-inner containner">
-            <div>
+            <div style="width: 100%;">
                 <ul class="video-list">
                     <li class="video-item"
                         v-for="(v, k) in sourceList"
                         :key="k"
                         @click="jumpToDetail(v.id)">
                         <img class="video-img"
-                             src="../../static/images/home_exparence.jpg">
+                             :src="v.showImg">
                         <img src="../../static/images/home_video_parse.png"
                              class="video-pause">
-                        <div class="video-text">{{v.name}}</div>
+                        <div class="video-text">{{v.title}}</div>
                     </li>
                 </ul>
                 <div class="my-pagination">
@@ -22,10 +22,10 @@
                                    :current-page="pageCount"
                                    @current-change="changeCount"
                                    layout="prev, pager, next"
-                                   :total="1000">
+                                   :total="total">
                     </el-pagination>
-                    <button :class="{'disable': pageCount === 100}"
-                            :disabled="pageCount === 100">尾页</button>
+                    <button :class="{'disable': pageCount === total}"
+                            :disabled="pageCount === total">尾页</button>
                 </div>
             </div>
         </div>
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import Vue from 'vue'
+
 export default {
     data() {
         return {
@@ -50,16 +52,35 @@ export default {
                     name: 'yj7型电液转辙机'
                 }
             ],
-            pageCount: 1
+            pageCount: 1,
+            total: 0
         }
     },
     methods: {
         changeCount(count) {
             this.pageCount = count
+            this.getList()
         },
         jumpToDetail(id) {
             this.$router.push(`/videodetail?id=${id}`)
+        },
+        getList() {
+            const data = {
+                page: this.pageCount,
+                rows: 12,
+                collegeId: 0,
+                columnId: 6
+            }
+            Vue.axios
+                .post(this.API_ROOT + 'columnContent/listFront', data)
+                .then(res => {
+                    this.sourceList = (res.data && res.data.items) || []
+                    this.total = (res.data && res.data.total) || 0
+                })
         }
+    },
+    mounted() {
+        this.getList()
     }
 }
 </script>
@@ -86,6 +107,8 @@ export default {
             }
             .video-img {
                 width: 100%;
+                width: 375px;
+                height: 240px;
             }
             .video-pause {
                 width: 50px;

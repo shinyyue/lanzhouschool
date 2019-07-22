@@ -8,8 +8,8 @@
                         :key="k"
                         @click="jumpToDetail(v.id)">
                         <img class="example-img"
-                             src="../../static/images/home_exparence.jpg">
-                        <div class="example-text">{{v.name}}</div>
+                             :src="v.showImg">
+                        <div class="example-text">{{v.title}}</div>
                     </li>
                 </ul>
                 <div class="my-pagination">
@@ -20,7 +20,7 @@
                                    :current-page="pageCount"
                                    @current-change="changeCount"
                                    layout="prev, pager, next"
-                                   :total="1000">
+                                   :total="total">
                     </el-pagination>
                     <button :class="{'disable': pageCount === 100}"
                             :disabled="pageCount === 100">尾页</button>
@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import Vue from 'vue'
+
 export default {
     data() {
         return {
@@ -48,7 +50,8 @@ export default {
                     name: 'yj7型电液转辙机'
                 }
             ],
-            pageCount: 1
+            pageCount: 1,
+            total: 0
         }
     },
     methods: {
@@ -57,7 +60,25 @@ export default {
         },
         changeCount(count) {
             this.pageCount = count
+            this.getList()
+        },
+        getList() {
+            const data = {
+                page: this.pageCount,
+                rows: 12,
+                collegeId: 0,
+                columnId: 7
+            }
+            Vue.axios
+                .post(this.API_ROOT + 'columnContent/listFront', data)
+                .then(res => {
+                    this.exampleList = (res.data && res.data.items) || []
+                    this.total = (res.data && res.data.total) || 0
+                })
         }
+    },
+    mounted() {
+        this.getList()
     }
 }
 </script>
@@ -84,6 +105,8 @@ export default {
             .example-img {
                 width: 100%;
                 cursor: pointer;
+                width: 375px;
+                height: 240px;
             }
             .example-text {
                 padding: 10px;
