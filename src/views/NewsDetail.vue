@@ -67,11 +67,13 @@ export default {
         // todo:接口问题
         getDetails() {
             const data = {
-                collegeId: 0,
-                columnId: this.id
+                // collegeId: 0,
+                id: this.id
             }
             Vue.axios
-                .post(this.API_ROOT + 'columnContent/queryOne', data)
+                .get(this.API_ROOT + 'columnContent/queryContentById', {
+                    params: data
+                })
                 .then(res => {
                     this.details =
                         (res.data &&

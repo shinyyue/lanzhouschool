@@ -67,20 +67,21 @@ export default {
         // todo:接口问题
         getDetails() {
             const data = {
-                collegeId: 0,
-                columnId: this.id
+                id: this.id
             }
             Vue.axios
-                .post(this.API_ROOT + 'columnContent/queryOne', data)
+                .get(this.API_ROOT + 'columnContent/queryContentById', {
+                    params: data
+                })
                 .then(res => {
-                    // this.details =
-                    //     (res.data &&
-                    //         res.data.items.length > 0 &&
-                    //         res.data.items[0]) ||
-                    //     {}
-                    // this.details.updateTime = new Date(
-                    //     this.details.updateTime
-                    // ).format('yyyy-MM-dd HH:mm:ss')
+                    this.details =
+                        (res.data &&
+                            res.data.items.length > 0 &&
+                            res.data.items[0]) ||
+                        {}
+                    this.details.updateTime = new Date(
+                        this.details.updateTime
+                    ).format('yyyy-MM-dd HH:mm:ss')
                 })
         }
     }
