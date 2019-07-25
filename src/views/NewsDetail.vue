@@ -9,9 +9,10 @@
             <div class="app-inner-right">
                 <img class="news-img"
                      src="../../static/images/news_img.png">
-                <div class="news-title">交大概况</div>
-                <div class="news-common-time">发布时间:2019-04-08 17:49:20</div>
-                <div class="news-content">
+                <div class="news-title">{{details.title}}</div>
+                <div class="news-common-time">发布时间:{{details.updateTime}}</div>
+                <div class="news-content"
+                     v-html="details.content">
                     <p>兰州交通大学（原兰州铁道学院）创建于1958年5月，由北京铁道学院(现北京交通大学)、唐山铁道学院(现西南交通大学)主干系科成建制迁兰组建而成，为我国第三所铁路本科高校，原隶属铁道部。2000年实行“中央与地方共建、以地方政府管理为主”的体制。2003年4月，经教育部批准，由“兰州铁道学院”更名为“兰州交通大学”。 /年。此外，土木工程实验教学示范中心还设有大学生创新基地，负责开放性和创新性实验教学。</p>
                     <p> 建校当年，我国铁道运输学科奠基人之一的林达美教授、著名桥梁专家胡春农教授、著名铁路轨道专家沈智扬教授、著名有线通信专家孙祺荫教授、著名机械专家张殿执教授、著名无线电技术专家班冀超教授、著名数学家赵祯教授等340多名教职工从京、唐两校成建制调入学校，之后铁道部又抽调了一批留苏科学技术副博士和研究生充实教师队伍。学校当年建校，当年招收7个本科专业446名学生。 实验中心以培养大学生的实践能力与创新精神为根本目标，不断深化实验教学改革，全面提高实验教学质量。探索出一条有利于学生个性发展、启迪学生创新精神的实验教学之路。
                     </p>
@@ -64,10 +65,8 @@ export default {
         changeMenu(index) {
             this.$router.push('/news?index=' + index)
         },
-        // todo:接口问题
         getDetails() {
             const data = {
-                // collegeId: 0,
                 id: this.id
             }
             Vue.axios
@@ -75,14 +74,12 @@ export default {
                     params: data
                 })
                 .then(res => {
-                    this.details =
-                        (res.data &&
-                            res.data.items.length > 0 &&
-                            res.data.items[0]) ||
-                        {}
-                    this.details.updateTime = new Date(
-                        this.details.updateTime
-                    ).format('yyyy-MM-dd HH:mm:ss')
+                    this.details = res.data || {}
+                    this.details.updateTime =
+                        this.details.updateTime &&
+                        new Date(this.details.updateTime).format(
+                            'yyyy-MM-dd HH:mm:ss'
+                        )
                 })
         }
     }
