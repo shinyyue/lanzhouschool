@@ -108,7 +108,8 @@
                                       class="project-list">
                         <div class="project-item"
                              v-for="(v, k) in item"
-                             :key="`source_list_${k}`">
+                             :key="`source_list_${k}`"
+                             @click="jumpToXuNiWeb()">
                             <img :src="v.showImg"
                                  class="project-bg">
                             <div class="source-desc">{{v.content}}</div>
@@ -341,6 +342,9 @@ export default {
         },
         jumpToRules() {
             this.$router.push('/rules')
+        },
+        jumpToXuNiWeb() {
+            window.location.href = 'http://39.104.97.6/index.html'
         },
         // todo: 验证数据源是否正确，怀疑columnID不对
         jumpToRulesDetail(item) {

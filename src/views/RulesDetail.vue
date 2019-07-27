@@ -47,7 +47,8 @@ export default {
                 {
                     name: '院系规章制度'
                 }
-            ]
+            ],
+            details: {}
         }
     },
     computed: {

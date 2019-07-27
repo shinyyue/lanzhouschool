@@ -45,8 +45,8 @@ export default {
                     this.centerList = (res.data && res.data.items) || []
                 })
         },
-        jumpToCollege() {
-            window.location.href = 'http://39.104.97.6:8020/'
+        jumpToCollege(id) {
+            window.location.href = 'http://39.104.97.6:8084?id=' + id
         }
     },
     mounted() {

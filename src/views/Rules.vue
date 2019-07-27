@@ -88,9 +88,7 @@ export default {
             this.pageCount = index
         },
         jumpToDetail(id, currentIndex) {
-            this.$router.push(
-                `/newsdetail?type=rules&id=${id}&index=${currentIndex}`
-            )
+            this.$router.push(`/rulesdetail?id=${id}&index=${currentIndex}`)
         },
         getList() {
             const data = {

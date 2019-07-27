@@ -43,7 +43,7 @@ export default {
     },
     methods: {
         jumpToDetail(id) {
-            this.$router.push(`/exampledetail?id=${id}`)
+            window.location.href = 'http://39.104.97.6/index.html'
         },
         changeCount(count) {
             this.pageCount = count

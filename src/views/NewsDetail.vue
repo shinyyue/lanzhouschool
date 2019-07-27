@@ -47,7 +47,8 @@ export default {
                 {
                     name: '通知公告'
                 }
-            ]
+            ],
+            details: {}
         }
     },
     computed: {
