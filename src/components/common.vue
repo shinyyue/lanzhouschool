@@ -8,7 +8,7 @@
                          class="head-logo">
                     <span class="head-name">虚拟仿真实验教学平台</span>
                 </div>
-                <div class="head-right">
+                <!-- <div class="head-right">
                     <div class="head-search">
                         <input class="search-left"
                                type="text"
@@ -16,7 +16,7 @@
                         <span class="search-confirm"><img src="../../static/images/search.png"
                                  alt=""></span>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="head-menu">
                 <ul class="menu-wrapper">

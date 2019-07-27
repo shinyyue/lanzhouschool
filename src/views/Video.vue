@@ -69,7 +69,7 @@ export default {
                 page: this.pageCount,
                 rows: 12,
                 collegeId: 0,
-                columnId: 6
+                columnId: 8
             }
             Vue.axios
                 .post(this.API_ROOT + 'columnContent/listFront', data)

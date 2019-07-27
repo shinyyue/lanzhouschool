@@ -8,8 +8,8 @@
                         :key="k"
                         @click="jumpToDetail(v.id)">
                         <img class="source-img"
-                             src="../../static/images/home_exparence.jpg">
-                        <div class="source-text">{{v.name}}</div>
+                             :src="v.showImg">
+                        <div class="source-text">{{v.title}}</div>
                     </li>
                 </ul>
                 <div class="my-pagination">
