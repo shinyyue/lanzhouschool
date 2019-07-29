@@ -653,7 +653,7 @@ export default {
       flex-direction: row;
       align-items: stretch;
       .project-item {
-        margin-right: 20px;
+        // margin-right: 20px;
         width: 25%;
         text-align: center;
 
@@ -745,7 +745,7 @@ export default {
           }
         }
         .news-time {
-          width: 200px;
+          // width: 200px;
           text-align: right;
         }
       }
