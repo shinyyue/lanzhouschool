@@ -10,7 +10,7 @@
     <div class="home-project">
       <div class="containner project-inner">
         <div class="project-title">
-          <span>实验教学中心</span>
+          <span>实验教学中心 | 虚拟仿真实验项目</span>
           <div class="project-change">
             <img
               :src="proCurrentIndex === 1 ? leftUndoIcon : leftDoIcon"
@@ -45,7 +45,7 @@
         </el-carousel>
       </div>
     </div>
-    <div class="home-project">
+    <!-- <div class="home-project">
       <div class="containner project-inner">
         <div class="project-title">
           <span>虚拟仿真实验项目</span>
@@ -74,15 +74,13 @@
             <div class="project-item" v-for="(v, k) in item" :key="`list_${k}`">
               <img :src="v.showImg" class="project-bg">
               <div class="project-desc">
-                <!-- <span class="desc-inner"
-                @click="jumpToExperiment(k)">{{v.text}}</span>-->
                 <span class="desc-inner">{{v.content}}</span>
               </div>
             </div>
           </el-carousel-item>
         </el-carousel>
       </div>
-    </div>
+    </div>-->
     <div class="home-news">
       <div class="home-news-inner containner">
         <div class="news-notice">
@@ -165,7 +163,7 @@
     <div class="home-project home-source home-video">
       <div class="containner">
         <div class="project-title">
-          <span>经典案例</span>
+          <span>经典案例 | 视频集锦</span>
           <div class="project-change">
             <img
               :src="caseIndex === 1 ? leftUndoIcon : leftDoIcon"
@@ -199,7 +197,7 @@
         </el-carousel>
       </div>
     </div>
-    <div class="home-project home-source home-video">
+    <!-- <div class="home-project home-source home-video">
       <div class="containner">
         <div class="project-title">
           <span>视频集锦</span>
@@ -235,7 +233,7 @@
           </el-carousel-item>
         </el-carousel>
       </div>
-    </div>
+    </div>-->
     <div class="home-footer">
       <div class="home-footer-inner containner">
         <img src="../../static/images/u150.jpg">
