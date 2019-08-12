@@ -11,6 +11,22 @@
                 </el-carousel-item>
             </el-carousel>
         </div>
+
+        <div class="home-guide">
+            <div class="containner project-inner">
+                <div class="guide-list">
+                    <div class="guide-item" v-for="item in guideList">
+                        <img :src="item.showImg"
+                             class="guide-bg" @click="jumpTo(item.path)">
+                        <div class="guide-desc">
+                            <!-- <span class="desc-inner"
+                                  @click="jumpToExperiment(k)">{{v.text}}</span> -->
+                            <span class="guide-desc" @click="jumpTo(item.path)">{{item.content}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="home-project">
             <div class="containner project-inner">
                 <div class="project-title">
@@ -41,7 +57,7 @@
                             <div class="project-desc">
                                 <!-- <span class="desc-inner"
                                       @click="jumpToExperiment(k)">{{v.text}}</span> -->
-                                <span class="desc-inner">{{v.content}}</span>
+                                <span class="desc-inner" >{{v.content}}</span>
                             </div>
                         </div>
                     </el-carousel-item>
@@ -212,7 +228,45 @@ export default {
             leftUndoIcon: require('../../static/images/home_arrow_left_undo.png'),
             rightUndoIcon: require('../../static/images/home_arrow_right_undo.png'),
             leftDoIcon: require('../../static/images/home_arrow_left_do.png'),
-            rightDoIcon: require('../../static/images/home_arrow_right_do.png')
+            rightDoIcon: require('../../static/images/home_arrow_right_do.png'),
+            guideList: [
+                {
+                    key: 1,
+                    showImg: require('../../static/images/student-guide.png'),
+                    content: '学生指南',
+                    path: '/newsdetail?id=206&index=1'
+                },
+                {
+                    key: 2,
+                    showImg: require('../../static/images/teacher-guide.png'),
+                    content: '教师指南',
+                    path: '/newsdetail?id=206&index=1'
+                },
+                {
+                    key: 3,
+                    showImg: require('../../static/images/manager-guide.png'),
+                    content: '管理指南',
+                    path: '/newsdetail?id=206&index=1'
+                },
+                {
+                    key: 4,
+                    showImg: require('../../static/images/review-guide.png'),
+                    content: '评审指南',
+                    path: '/newsdetail?id=206&index=1'
+                },
+                {
+                    key: 5,
+                    showImg: require('../../static/images/plat.png'),
+                    content: '虚拟仿真实验教学平台',
+                    path: 'http://39.104.97.6/index.html'
+                },
+                {
+                    key: 6,
+                    showImg: require('../../static/images/class-center.png'),
+                    content: '虚拟仿真实验教学中心',
+                    path: 'http://gdxkfz.lzjtu.edu.cn/'
+                },
+            ],
         }
     },
     mounted() {
@@ -222,6 +276,7 @@ export default {
         this.getRulesList()
         this.getSourceList()
         this.getVideoList()
+        this.getGuideList()
     },
     methods: {
         getBannerList() {
@@ -331,6 +386,19 @@ export default {
                     }
                 })
         },
+        getGuideList() {
+            // const data = {
+            //     page: 1,
+            //     rows: 10000,
+            //     collegeId: 0,
+            //     columnId: 1
+            // }
+            // Vue.axios
+            //     .post(this.API_ROOT + 'columnContent/listFront', data)
+            //     .then(res => {
+            //         this.bannerList = (res.data && res.data.items) || []
+            //     })
+        },
         jumpToExperiment(index) {
             this.$router.push(`/experiment?id=${index}`)
         },
@@ -392,7 +460,14 @@ export default {
         },
         jumpToVideo(id) {
             this.$router.push('/videodetail?id=' + id)
-        }
+        },
+        jumpTo(url) {
+            if(url.indexOf('http') != -1){
+                window.location.href = url
+            } else {
+                this.$router.push(url)
+            }
+        },
     }
 }
 </script>
@@ -615,7 +690,6 @@ export default {
                 }
             }
         }
-
         .source-desc {
             padding: 10px;
             text-align: center;
@@ -655,6 +729,41 @@ export default {
                 margin-right: 5px;
                 &:last-child {
                     margin-right: 0;
+                }
+            }
+        }
+    }
+    .home-guide {
+        background: #ededed;
+        padding: 30px 0;
+        .guide-list {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            .guide-item {
+                margin-right: 20px;
+                width: 15%;
+                text-align: center;
+                &:last-child {
+                    margin-right: 0;
+                }
+                .guide-bg {
+                    /*width: 100%;*/
+                    width: 123px;
+                    height: 123px;
+                    cursor: pointer;
+                }
+                .guide-desc {
+                    color: #999;
+                    padding: 20px 0;
+                    margin: 0 auto;
+                    width: 123px;
+                    text-align: center;
+                    cursor: pointer;
+                    font-size: 15px;
+                    &:hover {
+                        color: @active-color;
+                    }
                 }
             }
         }
