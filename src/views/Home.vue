@@ -35,13 +35,11 @@
                                       class="project-list">
                         <div class="project-item"
                              v-for="(v, k) in item"
-                             :key="`list_${k}`">
-                            <img :src="v.showImg"
+                             :key="`list_${k}`" @click="jumpToExperiment(v)">
+                            <img :src="v.imgUrl"
                                  class="project-bg">
                             <div class="project-desc">
-                                <!-- <span class="desc-inner"
-                                      @click="jumpToExperiment(k)">{{v.text}}</span> -->
-                                <span class="desc-inner">{{v.content}}</span>
+                                <span class="desc-inner">{{v.expName}}</span>
                             </div>
                         </div>
                     </el-carousel-item>
@@ -245,7 +243,7 @@ export default {
                 columnId: 2
             }
             Vue.axios
-                .post(this.API_ROOT + 'columnContent/listFront', data)
+                .post(this.API_ROOT + 'reportExperoment/queryReportExpList', data)
                 .then(res => {
                     if (res.data && res.data.items) {
                         if (res.data.items.length === 4) {
@@ -331,8 +329,9 @@ export default {
                     }
                 })
         },
-        jumpToExperiment(index) {
-            this.$router.push(`/experiment?id=${index}`)
+        jumpToExperiment(val) {
+            // debugger
+            this.$router.push(`/experiment?id=${val.id}`)
         },
         jumpToNews() {
             this.$router.push('/news')

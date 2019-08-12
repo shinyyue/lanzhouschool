@@ -14,6 +14,7 @@ const Source = () => import( /* webpackChunkName: "Source" */ './views/Source.vu
 const Video = () => import( /* webpackChunkName: "Video" */ './views/Video.vue')
 const VideoDetail = () => import( /* webpackChunkName: "VideoDetail" */ './views/VideoDetail.vue')
 const About = () => import( /* webpackChunkName: "about" */ './views/About.vue')
+const Experiment = () => import( /* webpackChunkName: "about" */ './views/Experiment.vue')
 
 Vue.use(Router)
 
@@ -128,6 +129,14 @@ export default new Router({
             component: About,
             meta: {
                 name: '关于我们'
+            }
+        },
+        {
+            path: '/experiment',
+            name: 'Experiment',
+            component: Experiment,
+            meta: {
+                name: '实验详情'
             }
         }
     ]
