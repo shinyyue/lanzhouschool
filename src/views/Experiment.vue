@@ -2,16 +2,17 @@
     <common id="expeirment"
             :showCrumbs="false">
         <div class="expeirment-banner">
-            <div>
+            <div class="containner">
                 <div class="experiment-background">
-                    <span class="expeirment-title">{{reportDetail.expName}}</span>
+                    <div class="expeirment-title">{{reportDetail.expName}}</div>
                     <p class="expeirment-content">{{reportDetail.expIntroduct}}</p>
                     <el-button class="expeirment-btn" type="warning" @click="doExperiment()">我要做实验</el-button>
-                    <video :src="reportDetail.videoUrl" controls="controls" width="378" height="234" style="position: relative;left: 1100px">
+                    <video class="experiment-video" :src="reportDetail.videoUrl" controls="controls" width="378" height="254">
                     </video>
                 </div>
             </div>
         </div>
+
 
         <div class="home-guide">
             <div class="containner">
@@ -80,7 +81,7 @@
             <div slot="title" class="head-title">
                 <span v-show="dialogTitle"  class="title-spec">{{ dialogTitle }}</span>
             </div>
-            <div  v-if="ifText" style="height: 480px">{{dialogContent}}</div>
+            <div  v-if="ifText" style="height: 480px" v-html="dialogContent"></div>
             <div  v-if="title == '实验资料'" style="height: 480px"  class="app-inner-right">
                 <ul class="news-notice-list">
                     <li v-for="(item, index) in list"
@@ -88,6 +89,7 @@
                         @click="download(item.url)"
                         class="news-item">
                         <i class="news-style"></i>
+                        <!--<a class="news-desc clamp-line">{{item.name}}</a>-->
                         <span class="news-desc clamp-line">{{item.name}}</span>
                     </li>
                 </ul>
@@ -165,10 +167,16 @@ export default {
         },
         doExperiment() {
             // 我要做实验
-            alert(1111)
+            window.location.href="http://39.104.97.6/index.html#/login"
         },
         download(url) {
-           window.open(url)
+            Vue.axios.get(this.API_ROOT + '/dataBank/downloadFile?filePath='+url).then(res => {
+                if (res.code !== 200) {
+                    this.$notify({
+                        message: res.msg || '下载失败'
+                    })
+                }
+            })
         },
 
     }
@@ -255,30 +263,49 @@ export default {
             padding: 0;
         }
         .expeirment-banner {
-            padding-top: 168px;
+            padding: 164px 0 0;
             overflow: hidden;
+            background: rgba(10, 27, 53, 1);
+        }
+        .containner {
+            padding: 0 15px;
         }
         .experiment-background {
             background-image: url(../../static/images/u33.jpg);
-            background-size: 1903px 300px;
+            background-size: 100% 100%;
+            position: relative;
+            height: 300px;
+            padding: 20px 15px;
+            box-sizing: border-box;
         }
         .expeirment-title {
             color: #FFFFFF;
             font-size: 30px;
-            position: relative;
-            left:380px;top:25px;
         }
         .expeirment-content {
             color: #FFFFFF;
             font-size: 18px;
-            position: relative;
-            left:380px;top:45px;
+            margin: 20px 0;
+            width: calc(100% - 450px);
+            max-width: 800px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 4;
+            overflow: hidden;
+            line-height: 1.6;
         }
         .expeirment-btn {
             color: #FFFFFF;
             font-size: 18px;
-            position: relative;
-            left:380px;bottom:20px
+            position: absolute;
+            left: 20px;
+            bottom:20px;
+        }
+        .experiment-video {
+            position: absolute;
+            right: 0;
+            bottom: 20px;
+            object-fit:fill;
         }
         .home-guide {
             background: #ededed;
@@ -303,7 +330,7 @@ export default {
                         }
                     }
                     .guide-img {
-                        position:relative;left:45px;top:60px;
+                        position:absolute;left:45px;top:60px;
                     }
                     .guide-desc {
                         color: #FFFFFF;
