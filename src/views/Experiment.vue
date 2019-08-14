@@ -80,8 +80,8 @@
             <div slot="title" class="head-title">
                 <span v-show="dialogTitle"  class="title-spec">{{ dialogTitle }}</span>
             </div>
-            <div  v-if="showText" style="height: 480px">{{dialogContent}}</div>
-            <div  v-if="showTable" style="height: 480px"  class="app-inner-right">
+            <div  v-if="ifText" style="height: 480px">{{dialogContent}}</div>
+            <div  v-if="title == '实验资料'" style="height: 480px"  class="app-inner-right">
                 <ul class="news-notice-list">
                     <li v-for="(item, index) in list"
                         :key="index"
@@ -92,6 +92,14 @@
                     </li>
                 </ul>
             </div>
+            <div  v-if="title == '实验指导'|| title == '项目描述'" >
+                <iframe :src=dialogContent width="100%" height="480px" frameborder="1">
+                </iframe>
+            </div>
+            <!--<div  v-if="title == '项目描述'" >-->
+                <!--<iframe :src=dialogContent width="100%" height="480px" frameborder="1">-->
+                <!--</iframe>-->
+            <!--</div>-->
         </el-dialog>
 
     </common>
@@ -113,8 +121,8 @@ export default {
             dialogVisible: false,
             dialogContent: '',
             dialogTitle: '',
-            showText: true,
-            showTable: false,
+            title: '',
+            ifText: true,
             list : []
         }
     },
@@ -140,16 +148,15 @@ export default {
                 })
         },
         openDialog(content,title) {
-            debugger
+            this.title = title
             if (title == '实验资料'){
-                this.showTable=true
-                this.showText=false
                 this.list = JSON.parse(content);
-            } else {
-                this.showTable=false
-                this.showText=true
             }
-            debugger
+            if(title != '实验资料' && title != '项目描述' && title != '实验指导'){
+                this.ifText = true
+            } else {
+                this.ifText = false
+            }
             // 弹窗
             this.dialogContent = content
             this.dialogTitle = title
