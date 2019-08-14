@@ -232,25 +232,25 @@ export default {
                     key: 1,
                     showImg: require('../../static/images/student-guide.png'),
                     content: '学生指南',
-                    path: '/newsdetail?id=206&index=1'
+                    path: '/guide?index=0'
                 },
                 {
                     key: 2,
                     showImg: require('../../static/images/teacher-guide.png'),
                     content: '教师指南',
-                    path: '/newsdetail?id=206&index=1'
+                    path: '/guide?index=1'
                 },
                 {
                     key: 3,
                     showImg: require('../../static/images/manager-guide.png'),
                     content: '管理指南',
-                    path: '/newsdetail?id=206&index=1'
+                    path: '/guide?index=2'
                 },
                 {
                     key: 4,
                     showImg: require('../../static/images/review-guide.png'),
                     content: '评审指南',
-                    path: '/newsdetail?id=206&index=1'
+                    path: '/guide?index=3'
                 },
                 {
                     key: 5,
