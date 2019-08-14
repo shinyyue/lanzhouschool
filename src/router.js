@@ -16,7 +16,6 @@ const VideoDetail = () => import( /* webpackChunkName: "VideoDetail" */ './views
 const About = () => import( /* webpackChunkName: "about" */ './views/About.vue')
 const Experiment = () => import( /* webpackChunkName: "about" */ './views/Experiment.vue')
 const Guide = () => import( /* webpackChunkName: "Guide" */ './views/Guide.vue')
-const GuideDetail = () => import( /* webpackChunkName: "GuideDetail" */ './views/GuideDetail.vue')
 
 Vue.use(Router)
 
@@ -145,14 +144,6 @@ export default new Router({
             path: '/guide',
             name: 'guide',
             component: Guide,
-            meta: {
-                name: '教学指南'
-            }
-        },
-        {
-            path: '/guidedetail',
-            name: 'guidedetail',
-            component: GuideDetail,
             meta: {
                 name: '教学指南'
             }
