@@ -10,63 +10,42 @@
                 <img class="news-img"
                      src="../../static/images/news_img.png">
                 <!-- 学术信息 -->
-                <ul v-show="currentIndex === 0"
-                    class="guide-notice-list">
-                    <li v-for="(item, index) in newsList"
-                        @click="jumpToDetail(item.id, 0)"
-                        :key="index"
-                        class="guide-item">
-                        <i class="guide-style"></i>
-                        <span class="guide-desc clamp-line">{{item.title}}</span>
-                        <span class="guide-time">{{new Date(item.updateTime).format('yyyy-MM-dd hh:mm:ss')}}</span>
-                    </li>
-                </ul>
+                <div v-show="this.currentIndex === 0">
+                    <!--<img class="news-img"-->
+                         <!--src="../../static/images/news_img.png">-->
+                    <div class="news-title">{{details.title}}</div>
+                    <div class="news-common-time">发布时间:{{details.updateTime}}</div>
+                    <div class="news-content"
+                         v-html="details.content">
+                    </div>
+                </div>
                 <!-- 通知公告 -->
-                <ul v-show="currentIndex === 1"
-                    class="guide-notice-list">
-                    <li v-for="(item, index) in newsList"
-                        :key="index"
-                        @click="jumpToDetail(item.id, 1)"
-                        class="guide-item">
-                        <i class="guide-style"></i>
-                        <span class="guide-desc clamp-line">{{item.title}}</span>
-                        <span class="guide-time">{{new Date(item.updateTime).format('yyyy-MM-dd hh:mm:ss')}}</span>
-                    </li>
-                </ul>
-                <ul v-show="currentIndex === 2"
-                    class="guide-notice-list">
-                    <li v-for="(item, index) in newsList"
-                        :key="index"
-                        @click="jumpToDetail(item.id, 2)"
-                        class="guide-item">
-                        <i class="guide-style"></i>
-                        <span class="guide-desc clamp-line">{{item.title}}</span>
-                        <span class="guide-time">{{new Date(item.updateTime).format('yyyy-MM-dd hh:mm:ss')}}</span>
-                    </li>
-                </ul>
-                <ul v-show="currentIndex === 3"
-                    class="guide-notice-list">
-                    <li v-for="(item, index) in newsList"
-                        :key="index"
-                        @click="jumpToDetail(item.id, 3)"
-                        class="guide-item">
-                        <i class="guide-style"></i>
-                        <span class="guide-desc clamp-line">{{item.title}}</span>
-                        <span class="guide-time">{{new Date(item.updateTime).format('yyyy-MM-dd hh:mm:ss')}}</span>
-                    </li>
-                </ul>
-                <div class="my-pagination">
-                    <button :class="{'disable': pageCount === 1}"
-                            :disabled="pageCount === 1">首页</button>
-
-                    <el-pagination background
-                                   :current-page="pageCount"
-                                   @current-change="changeCount"
-                                   layout="prev, pager, next"
-                                   :total="total">
-                    </el-pagination>
-                    <button :class="{'disable': pageCount === 100}"
-                            :disabled="pageCount === 100">尾页</button>
+                <div v-show="this.currentIndex === 1">
+                    <!--<img class="news-img"-->
+                    <!--src="../../static/images/news_img.png">-->
+                    <div class="news-title">{{details.title}}</div>
+                    <div class="news-common-time">发布时间:{{details.updateTime}}</div>
+                    <div class="news-content"
+                         v-html="details.content">
+                    </div>
+                </div>
+                <div v-show="this.currentIndex === 2">
+                    <!--<img class="news-img"-->
+                    <!--src="../../static/images/news_img.png">-->
+                    <div class="news-title">{{details.title}}</div>
+                    <div class="news-common-time">发布时间:{{details.updateTime}}</div>
+                    <div class="news-content"
+                         v-html="details.content">
+                    </div>
+                </div>
+                <div v-show="this.currentIndex === 3">
+                    <!--<img class="news-img"-->
+                    <!--src="../../static/images/news_img.png">-->
+                    <div class="news-title">{{details.title}}</div>
+                    <div class="news-common-time">发布时间:{{details.updateTime}}</div>
+                    <div class="news-content"
+                         v-html="details.content">
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,7 +75,8 @@ export default {
             currentIndex: 0,
             newsList: [],
             pageCount: 1,
-            total: 0
+            total: 0,
+            details: {}
         }
     },
     computed: {
@@ -132,12 +112,6 @@ export default {
             this.$router.push('/guide?index=' + index)
             this.currentIndex = index
         },
-        changeCount(index) {
-            this.pageCount = index
-        },
-        jumpToDetail(id, currentIndex) {
-            this.$router.push(`/guidedetail?id=${id}&index=${currentIndex}`)
-        },
         getList(columnId) {
             const data = {
                 page: this.pageCount,
@@ -148,24 +122,16 @@ export default {
             Vue.axios
                 .post(this.API_ROOT + 'columnContent/listFront', data)
                 .then(res => {
-                    this.newsList = (res.data && res.data.items) || []
-                    this.total = (res.data && res.data.total) || 0
+                    this.details =
+                        (res.data &&
+                            res.data.items.length > 0 &&
+                            res.data.items[0]) ||
+                        {}
+                    this.details.updateTime = new Date(
+                        this.details.updateTime
+                    ).format('yyyy-MM-dd hh:mm:ss')
                 })
         },
-        // getList2() {
-        //     const data = {
-        //         page: this.pageCount,
-        //         rows: 20,
-        //         collegeId: 0,
-        //         columnId: 14
-        //     }
-        //     Vue.axios
-        //         .post(this.API_ROOT + 'columnContent/listFront', data)
-        //         .then(res => {
-        //             this.newsList = (res.data && res.data.items) || []
-        //             this.total = (res.data && res.data.total) || 0
-        //         })
-        // }
     },
     mounted() {
         const query = this.$route.query
