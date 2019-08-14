@@ -77,10 +77,21 @@
             title=" "
             :visible.sync="dialogVisible"
             width="800px" >
-            <div slot="title">
-                <span v-show="dialogTitle" >{{ dialogTitle }}</span>
+            <div slot="title" class="head-title">
+                <span v-show="dialogTitle"  class="title-spec">{{ dialogTitle }}</span>
             </div>
-            <div style="height: 480px">{{dialogContent}}</div>
+            <div  v-if="showText" style="height: 480px">{{dialogContent}}</div>
+            <div  v-if="showTable" style="height: 480px"  class="app-inner-right">
+                <ul class="news-notice-list">
+                    <li v-for="(item, index) in list"
+                        :key="index"
+                        @click="download(item.url)"
+                        class="news-item">
+                        <i class="news-style"></i>
+                        <span class="news-desc clamp-line">{{item.name}}</span>
+                    </li>
+                </ul>
+            </div>
         </el-dialog>
 
     </common>
@@ -101,7 +112,10 @@ export default {
             reportDetail: {},
             dialogVisible: false,
             dialogContent: '',
-            dialogTitle: ''
+            dialogTitle: '',
+            showText: true,
+            showTable: false,
+            list : []
         }
     },
     computed: {
@@ -126,6 +140,16 @@ export default {
                 })
         },
         openDialog(content,title) {
+            debugger
+            if (title == '实验资料'){
+                this.showTable=true
+                this.showText=false
+                this.list = JSON.parse(content);
+            } else {
+                this.showTable=false
+                this.showText=true
+            }
+            debugger
             // 弹窗
             this.dialogContent = content
             this.dialogTitle = title
@@ -135,7 +159,10 @@ export default {
         doExperiment() {
             // 我要做实验
             alert(1111)
-        }
+        },
+        download(url) {
+           window.open(url)
+        },
 
     }
 }
@@ -164,6 +191,57 @@ export default {
                         border-bottom: 2px solid rgba(25, 158, 216, 1);
                     }
                 }
+            }
+        }
+        .head-title{
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 800px;
+            height: 50px;
+            background: inherit;
+            background-color: rgba(0, 167, 219, 1);
+            border: none;
+            border-bottom: 0px;
+            border-radius: 0px;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+        .title-spec{
+            position: relative;
+            left: 12px;
+            top: 12px;
+            font-size: 24px;
+            color: white;
+        }
+        .news-notice-list {
+            margin: 30px 0;
+        }
+        .news-item {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 5px;
+            font-size: 16px;
+            padding: 8px 0;
+            .news-style {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: rgb(0, 101, 156);
+                margin-right: 10px;
+            }
+            .news-desc {
+                flex: 1;
+                &:hover {
+                    color: rgb(0, 101, 156);
+                    cursor: pointer;
+                }
+            }
+            .news-time {
+                width: 200px;
+                text-align: right;
             }
         }
         .app-content {
