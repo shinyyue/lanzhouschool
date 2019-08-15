@@ -256,7 +256,7 @@ export default {
                     key: 5,
                     showImg: require('../../static/images/plat.png'),
                     content: '虚拟仿真实验教学平台',
-                    path: 'http://39.104.97.6/index.html'
+                    path: 'http://39.104.97.6/index.html#/login'
                 },
                 {
                     key: 6,

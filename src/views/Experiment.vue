@@ -170,7 +170,7 @@ export default {
             window.location.href="http://39.104.97.6/index.html#/login"
         },
         download(url) {
-            Vue.axios.get(this.API_ROOT + '/dataBank/downloadFile?filePath='+url).then(res => {
+            Vue.axios.get(this.API_ROOT + 'dataBank/downloadFile?filePath='+url).then(res => {
                 if (res.code !== 200) {
                     this.$notify({
                         message: res.msg || '下载失败'
@@ -293,6 +293,7 @@ export default {
             -webkit-line-clamp: 4;
             overflow: hidden;
             line-height: 1.6;
+            word-break: break-all;
         }
         .expeirment-btn {
             color: #FFFFFF;
@@ -318,6 +319,16 @@ export default {
                     margin-right: 20px;
                     width: 25%;
                     text-align: center;
+                    cursor: pointer;
+                    &:hover {
+                        opacity: 0.8;
+                    }
+                    >div {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                    }
                     &:last-child {
                         margin-right: 0;
                     }
@@ -325,20 +336,18 @@ export default {
                         width: 123px;
                         height: 123px;
                         cursor: pointer;
-                        &:hover {
-                            color: @active-color;
-                        }
                     }
                     .guide-img {
-                        position:absolute;left:45px;top:60px;
+                        margin-bottom: 10px;
+                        // position:absolute;left:45px;top:60px;
                     }
                     .guide-desc {
                         color: #FFFFFF;
                         font-size: 24px;
-                        position: relative;
-                        right:30px;top:120px;
+                        // position: relative;
+                        // right:30px;top:120px;
                         &:hover {
-                            color: @active-color;
+                            color: #fff;
                         }
                     }
                 }
