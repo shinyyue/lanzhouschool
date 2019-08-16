@@ -86,11 +86,9 @@
                 <ul class="news-notice-list">
                     <li v-for="(item, index) in dataList"
                         :key="index"
-                        @click="download(item.url)"
                         class="news-item">
                         <i class="news-style"></i>
-                        <!--<a class="news-desc clamp-line">{{item.name}}</a>-->
-                        <span class="news-desc clamp-line">{{item.name}}</span>
+                        <a class="news-desc clamp-line" :href="API_ROOT + 'dataBank/downloadFile?filePath='+item.url">{{item.name}}</a>
                     </li>
                 </ul>
             </div>
@@ -173,15 +171,6 @@ export default {
         doExperiment() {
             // 我要做实验
             window.location.href="http://39.104.97.6/index.html#/login"
-        },
-        download(url) {
-            Vue.axios.get(this.API_ROOT + 'dataBank/downloadFile?filePath='+url).then(res => {
-                if (res.code !== 200) {
-                    this.$notify({
-                        message: res.msg || '下载失败'
-                    })
-                }
-            })
         },
         getList(id) {
             Vue.axios
