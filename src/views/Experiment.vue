@@ -7,7 +7,7 @@
                     <div class="expeirment-title">{{reportDetail.expName}}</div>
                     <p class="expeirment-content">{{reportDetail.expIntroduct}}</p>
                     <el-button class="expeirment-btn" type="warning" @click="doExperiment()">我要做实验</el-button>
-                    <video class="experiment-video" :src="reportDetail.videoUrl" controls="controls" width="378" height="254">
+                    <video class="experiment-video" :src="'http://39.104.97.6:8001/' + reportDetail.videoUrl" controls="controls" width="378" height="254">
                     </video>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="guide-item">
-                        <div style="height: 200px; width: 280px; float: right; background: #00A7DB" @click="openDialog(reportDetail.data,'实验资料')">
+                        <div style="height: 200px; width: 280px; float: right; background: #00A7DB" @click="openDialog(dataList,'实验资料')">
                             <img src="../../static/images/u175.svg"  class="guide-img"/>
                             <span class="guide-desc" >实验资料</span>
                         </div>
@@ -84,7 +84,7 @@
             <div  v-if="ifText" style="height: 480px" v-html="dialogContent"></div>
             <div  v-if="title == '实验资料'" style="height: 480px"  class="app-inner-right">
                 <ul class="news-notice-list">
-                    <li v-for="(item, index) in list"
+                    <li v-for="(item, index) in dataList"
                         :key="index"
                         @click="download(item.url)"
                         class="news-item">
@@ -95,7 +95,7 @@
                 </ul>
             </div>
             <div  v-if="title == '实验指导'|| title == '项目描述'" >
-                <iframe :src=dialogContent width="100%" height="480px" frameborder="1">
+                <iframe :src="dialogContent" width="100%" height="480px" frameborder="1">
                 </iframe>
             </div>
             <!--<div  v-if="title == '项目描述'" >-->
@@ -125,7 +125,8 @@ export default {
             dialogTitle: '',
             title: '',
             ifText: true,
-            list : []
+            list : [],
+            dataList: []
         }
     },
     computed: {
@@ -147,12 +148,16 @@ export default {
                 })
                 .then(res => {
                     this.reportDetail = res.data || {}
+                    this.getList(res.data.id)
                 })
         },
         openDialog(content,title) {
+
+            console.log(22222, content)
+
             this.title = title
-            if (title == '实验资料'){
-                this.list = JSON.parse(content);
+            if (title === '项目描述' || title=== '实验指导') {
+                this.content = content =  'http://39.104.97.6:8001/' + content
             }
             if(title != '实验资料' && title != '项目描述' && title != '实验指导'){
                 this.ifText = true
@@ -178,7 +183,27 @@ export default {
                 }
             })
         },
-
+        getList(id) {
+            Vue.axios
+                .post(this.API_ROOT + 'reportDate/queryReportDataList', {
+                    page: 1,
+                    rows: 10,
+                    key: id
+                })
+                .then(res => {
+                    if (res.code === 401) {
+                        this.$store.dispatch('manuallyLoginOut')
+                        this.$router.push({
+                            path: '/login',
+                            query: {
+                                redirect: this.$route.path
+                            }
+                        })
+                    } else if (res.code === 200) {
+                        this.dataList = (res.data && res.data.items) || []
+                    }
+                })
+        },
     }
 }
 </script>

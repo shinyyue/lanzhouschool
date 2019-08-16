@@ -52,7 +52,7 @@
                         <div class="project-item"
                              v-for="(v, k) in item"
                              :key="`list_${k}`" @click="jumpToExperiment(v)">
-                            <img :src="v.imgUrl"
+                            <img :src="'http://39.104.97.6:8001/' + v.imgUrl"
                                  class="project-bg">
                             <div class="project-desc">
                                 <span class="desc-inner">{{v.expName}}</span>
