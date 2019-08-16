@@ -150,9 +150,6 @@ export default {
                 })
         },
         openDialog(content,title) {
-
-            console.log(22222, content)
-
             this.title = title
             if (title === '项目描述' || title=== '实验指导') {
                 this.content = content =  'http://39.104.97.6:8001/' + content
@@ -180,17 +177,7 @@ export default {
                     key: id
                 })
                 .then(res => {
-                    if (res.code === 401) {
-                        this.$store.dispatch('manuallyLoginOut')
-                        this.$router.push({
-                            path: '/login',
-                            query: {
-                                redirect: this.$route.path
-                            }
-                        })
-                    } else if (res.code === 200) {
-                        this.dataList = (res.data && res.data.items) || []
-                    }
+                    this.dataList = (res.data && res.data.items) || []                    
                 })
         },
     }
