@@ -1,7 +1,7 @@
 <template>
     <common id="example">
         <div class="app-inner containner">
-            <div>
+            <div style="width: 100%;">
                 <ul class="example-list">
                     <li class="example-item"
                         v-for="(v, k) in exampleList"

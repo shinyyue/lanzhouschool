@@ -46,7 +46,7 @@ export default {
                 })
         },
         jumpToCollege(id) {
-            window.location.href = 'http://39.104.97.6:8084?id=' + id
+            window.location.href = 'http://47.105.130.130:8084?id=' + id
         }
     },
     mounted() {

@@ -30,11 +30,11 @@ Vue.prototype.$message = Message
 Vue.prototype.$alert = MessageBox.alert
 
 Vue.prototype.API_ROOT = (process.env.NODE_ENV === 'production') ?
-    'http://39.104.97.6:8080/' : 'http://39.104.97.6:8080/'
+    'http://47.105.130.130:8100/' : 'http://47.105.130.130:8100/';
 Vue.prototype.FILE_ROOT = (process.env.NODE_ENV === 'production') ?
-    'http://39.104.97.6:8001/' : 'http://39.104.97.6:8001/'
+    'http://47.105.130.130:8001/' : 'http://47.105.130.130:8001/';
 Vue.prototype.WEB_ROOT = (process.env.NODE_ENV === 'production') ?
-    'http://39.104.97.6:8099/' : 'http://39.104.97.6:8099/'
+    'http://47.105.130.130:8099/' : 'http://47.105.130.130:8099/';
 
 router.beforeEach((to, from, next) => {
     window.document.title = '兰州交通大学虚拟仿真实验教学平台'

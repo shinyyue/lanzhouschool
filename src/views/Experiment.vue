@@ -7,7 +7,7 @@
                     <div class="expeirment-title">{{reportDetail.expName}}</div>
                     <p class="expeirment-content">{{reportDetail.expIntroduct}}</p>
                     <el-button class="expeirment-btn" type="warning" @click="doExperiment()">我要做实验</el-button>
-                    <video class="experiment-video" :src="'http://39.104.97.6:8001/' + reportDetail.videoUrl" controls="controls" width="378" height="254">
+                    <video class="experiment-video" :src="'http://47.105.130.130:8100/' + reportDetail.videoUrl" controls="controls" width="378" height="254">
                     </video>
                 </div>
             </div>
@@ -152,7 +152,7 @@ export default {
         openDialog(content,title) {
             this.title = title
             if (title === '项目描述' || title=== '实验指导') {
-                this.content = content =  'http://39.104.97.6:8001/' + content
+                this.content = content =  'http://47.105.130.130:8100/' + content
             }
             if(title != '实验资料' && title != '项目描述' && title != '实验指导'){
                 this.ifText = true
@@ -167,7 +167,7 @@ export default {
         },
         doExperiment() {
             // 我要做实验
-            window.location.href="http://39.104.97.6/index.html#/login"
+            window.location.href="http://47.105.130.130/index.html#/login"
         },
         getList(id) {
             Vue.axios
