@@ -1,7 +1,7 @@
 <template>
     <common id="source">
         <div class="app-inner containner">
-            <div>
+            <div style="width: 100%;">
                 <ul class="source-list">
                     <li class="source-item"
                         v-for="(v, k) in sourceList"
@@ -90,7 +90,8 @@ export default {
                 margin: 0 2% 20px;
             }
             .source-img {
-                width: 100%;
+                width: 375px;
+                height: 240px;
                 cursor: pointer;
             }
             .source-text {

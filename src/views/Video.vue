@@ -94,7 +94,7 @@ export default {
         flex-direction: row;
         justify-content: flex-start;
         flex-wrap: wrap;
-        align-items: center;
+        align-items: flex-start;
         .video-item {
             width: 32%;
             text-align: center;

@@ -46,11 +46,11 @@
                     版权所有 兰州交通大学 通讯地址：兰州市安宁区安宁西路88号 邮编：730070
                 </span>
             </p>
-            <p>
+            <!-- <p>
                 <span>
                     域名备案信息：[www.lzjtu.edu.cn/陇ICP备14001560号-2] [www.lzjtu.cn]
                 </span>
-            </p>
+            </p> -->
         </div>
     </div>
 </template>

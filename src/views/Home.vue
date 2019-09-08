@@ -52,7 +52,7 @@
                         <div class="project-item"
                              v-for="(v, k) in item"
                              :key="`list_${k}`" @click="jumpToExperiment(v)">
-                            <img :src="'http://39.104.97.6:8001/' + v.imgUrl"
+                            <img :src="FILE_ROOT+ v.imgUrl"
                                  class="project-bg">
                             <div class="project-desc">
                                 <span class="desc-inner">{{v.expName}}</span>
@@ -160,7 +160,7 @@
                             <div>
                                 <img src="../../static/images/home_video_parse.png"
                                      class="source-video-parse">
-                                <img :src="v.img"
+                                <img :src="v.showImg"
                                      class="project-bg"
                                      @click="jumpToVideo(v.id)">
                             </div>
@@ -171,7 +171,7 @@
                 </el-carousel>
             </div>
         </div>
-        <div class="home-footer">
+        <!-- <div class="home-footer">
             <div class="home-footer-inner containner">
                 <img src="../../static/images/u150.jpg" />
                 <img src="../../static/images/u152.jpg" />
@@ -182,7 +182,7 @@
                 <img src="../../static/images/u162.jpg" />
                 <img src="../../static/images/u164.jpg" />
             </div>
-        </div>
+        </div> -->
 
     </common>
 </template>
