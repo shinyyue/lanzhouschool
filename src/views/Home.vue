@@ -98,7 +98,7 @@
                 </div>
             </div>
         </div>
-        <div class="home-project home-source">
+        <!-- <div class="home-project home-source">
             <div class="containner">
                 <div class="project-title">
                     <span>资源共享</span>
@@ -131,7 +131,7 @@
                     </el-carousel-item>
                 </el-carousel>
             </div>
-        </div>
+        </div> -->
         <div class="home-project home-source home-video">
             <div class="containner">
                 <div class="project-title">
@@ -215,7 +215,7 @@ export default {
             projectsList: [],
             proPage: 1,
             proCurrentIndex: 1,
-            sourceList: [],
+            // sourceList: [],
             sourcePage: 1,
             newsList: [],
             rulesList: [],
@@ -272,7 +272,7 @@ export default {
         this.getProjectList()
         this.getNewsList()
         this.getRulesList()
-        this.getSourceList()
+        // this.getSourceList()
         this.getVideoList()
         this.getGuideList()
     },
@@ -327,30 +327,30 @@ export default {
                     }
                 })
         },
-        getSourceList() {
-            const data = {
-                page: this.sourcePage,
-                rows: 4,
-                collegeId: 0,
-                columnId: 6
-            }
-            Vue.axios
-                .post(this.API_ROOT + 'columnContent/listFront', data)
-                .then(res => {
-                    if (res.data && res.data.items) {
-                        if (res.data && res.data.items) {
-                            if (res.data.items.length === 4) {
-                                this.sourcePage++
-                                this.getSourceList()
-                            }
-                            this.sourceList = [
-                                ...this.sourceList,
-                                ...[res.data.items]
-                            ]
-                        }
-                    }
-                })
-        },
+        // getSourceList() {
+        //     const data = {
+        //         page: this.sourcePage,
+        //         rows: 4,
+        //         collegeId: 0,
+        //         columnId: 6
+        //     }
+        //     Vue.axios
+        //         .post(this.API_ROOT + 'columnContent/listFront', data)
+        //         .then(res => {
+        //             if (res.data && res.data.items) {
+        //                 if (res.data && res.data.items) {
+        //                     if (res.data.items.length === 4) {
+        //                         this.sourcePage++
+        //                         this.getSourceList()
+        //                     }
+        //                     this.sourceList = [
+        //                         ...this.sourceList,
+        //                         ...[res.data.items]
+        //                     ]
+        //                 }
+        //             }
+        //         })
+        // },
         getVideoList() {
             const data = {
                 page: this.videoPage,
@@ -432,17 +432,17 @@ export default {
             this.proCurrentIndex++
             this.$refs.projectCarousel.activeIndex = this.proCurrentIndex - 1
         },
-        changeSourceLast() {
-            if (this.sourceIndex === 1) return
-            this.sourceIndex--
-            this.$refs.sourceCarousel.activeIndex = this.sourceIndex - 1
-        },
-        changeSourceNext() {
-            if (this.sourceIndex === this.sourceList.length && this.sourceIndex)
-                return
-            this.sourceIndex++
-            this.$refs.sourceCarousel.activeIndex = this.sourceIndex - 1
-        },
+        // changeSourceLast() {
+        //     if (this.sourceIndex === 1) return
+        //     this.sourceIndex--
+        //     this.$refs.sourceCarousel.activeIndex = this.sourceIndex - 1
+        // },
+        // changeSourceNext() {
+        //     if (this.sourceIndex === this.sourceList.length && this.sourceIndex)
+        //         return
+        //     this.sourceIndex++
+        //     this.$refs.sourceCarousel.activeIndex = this.sourceIndex - 1
+        // },
         changeVideoLast() {
             if (this.videoIndex === 1) return
             this.videoIndex--
