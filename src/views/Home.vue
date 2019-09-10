@@ -19,8 +19,6 @@
                         <img :src="item.showImg"
                              class="guide-bg" @click="jumpTo(item.path)">
                         <div class="guide-desc">
-                            <!-- <span class="desc-inner"
-                                  @click="jumpToExperiment(k)">{{v.text}}</span> -->
                             <span class="guide-desc" @click="jumpTo(item.path)">{{item.content}}</span>
                         </div>
                     </div>
@@ -55,7 +53,7 @@
                             <img :src="FILE_ROOT+ v.imgUrl"
                                  class="project-bg">
                             <div class="project-desc">
-                                <span class="desc-inner">{{v.expName}}</span>
+                                <span class="desc-inner" :title="v.expName" style="display: block; overflow: hidden; width: 280px; white-space: nowrap; text-overflow: ellipsis">{{v.expName}}</span>
                             </div>
                         </div>
                     </el-carousel-item>
@@ -413,7 +411,6 @@ export default {
         jumpToXuNiWeb() {
             window.location.href = 'http://47.105.130.130:8099/index.html'
         },
-        // todo: 验证数据源是否正确，怀疑columnID不对
         jumpToRulesDetail(item) {
             const index = item.columnId === 17 ? 1 : 0
             this.$router.push('/rulesdetail?id=' + item.id + '&index=' + index)
@@ -432,17 +429,6 @@ export default {
             this.proCurrentIndex++
             this.$refs.projectCarousel.activeIndex = this.proCurrentIndex - 1
         },
-        // changeSourceLast() {
-        //     if (this.sourceIndex === 1) return
-        //     this.sourceIndex--
-        //     this.$refs.sourceCarousel.activeIndex = this.sourceIndex - 1
-        // },
-        // changeSourceNext() {
-        //     if (this.sourceIndex === this.sourceList.length && this.sourceIndex)
-        //         return
-        //     this.sourceIndex++
-        //     this.$refs.sourceCarousel.activeIndex = this.sourceIndex - 1
-        // },
         changeVideoLast() {
             if (this.videoIndex === 1) return
             this.videoIndex--
@@ -554,7 +540,7 @@ export default {
         }
     }
     .home-project {
-        background: #ededed;
+        background: #fff;
         padding: 30px 0;
         .project-title {
             color: #666;
@@ -616,6 +602,7 @@ export default {
     .home-news {
         background: #fff;
         .home-news-inner {
+            width: 1250px;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -623,7 +610,7 @@ export default {
         }
         .news-notice,
         .news-result {
-            flex: 1;
+            width: 50%;
             align-self: flex-start;
         }
         .news-notice {
@@ -678,7 +665,7 @@ export default {
         }
     }
     .home-source {
-        background: #ededed;
+        background: #fff;
         .project-list {
             .project-item {
                 position: relative;
@@ -733,7 +720,7 @@ export default {
         }
     }
     .home-guide {
-        background: #ededed;
+        background: #fff;
         padding: 30px 0;
         .guide-list {
             display: flex;
