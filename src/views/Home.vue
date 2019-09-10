@@ -411,7 +411,7 @@ export default {
             this.$router.push('/rules')
         },
         jumpToXuNiWeb() {
-            window.location.href = 'http://47.105.130.130/index.html'
+            window.location.href = 'http://47.105.130.130:8099/index.html'
         },
         // todo: 验证数据源是否正确，怀疑columnID不对
         jumpToRulesDetail(item) {

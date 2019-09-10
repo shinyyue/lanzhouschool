@@ -167,7 +167,7 @@ export default {
         },
         doExperiment() {
             // 我要做实验
-            window.location.href="http://47.105.130.130/index.html#/login"
+            window.location.href="http://47.105.130.130:8099/index.html#/login"
         },
         getList(id) {
             Vue.axios
