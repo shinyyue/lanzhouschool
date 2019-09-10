@@ -81,8 +81,8 @@
             <div slot="title" class="head-title">
                 <span v-show="dialogTitle"  class="title-spec">{{ dialogTitle }}</span>
             </div>
-            <div  v-if="ifText" style="height: 480px; line-height: 1.5;" v-html="dialogContent"></div>
-            <div  v-if="title == '实验资料'" style="height: 480px"  class="app-inner-right">
+            <div  v-if="ifText" style="height: 480px; line-height: 1.5;overflow: auto;" v-html="dialogContent"></div>
+            <div  v-if="title == '实验资料'" style="height: 480px;overflow: auto;"  class="app-inner-right">
                 <ul class="news-notice-list">
                     <li v-for="(item, index) in dataList"
                         :key="index"
