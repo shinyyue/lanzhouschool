@@ -600,7 +600,7 @@ export default {
         }
     }
     .home-news {
-        background: #fff;
+        background: #ededed;
         .home-news-inner {
             width: 1250px;
             display: flex;
@@ -720,7 +720,7 @@ export default {
         }
     }
     .home-guide {
-        background: #fff;
+        background: #ededed;
         padding: 30px 0;
         .guide-list {
             display: flex;
