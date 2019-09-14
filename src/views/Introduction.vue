@@ -38,9 +38,9 @@
                                        layout="prev, pager, next"
                                        :total="total">
                         </el-pagination>
-                        <button :class="{'disable': pageCount === 100}"
-                                :disabled="pageCount === 100"
-                                @click="jumpTo(newsStyleList.length)">尾页</button>
+                        <button :class="{'disable': pageCount === (Math.floor(total / 9) + 1)}"
+                                :disabled="pageCount === (Math.floor(total / 9) + 1)"
+                                @click="jumpTo(Math.floor(total / 9) + 1)">尾页</button>
                     </div>
 
                 </div>
@@ -144,7 +144,8 @@ export default {
         align-items: flex-start;
         padding: 0 3% 20px 0;
         > img {
-            width: 100%;
+            width: 300px;
+            height: 220px;
             margin-bottom: 10px;
         }
         .style-item-title {

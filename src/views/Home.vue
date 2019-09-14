@@ -28,7 +28,7 @@
         <div class="home-project">
             <div class="containner project-inner">
                 <div class="project-title">
-                    <span>实验教学中心 | 虚拟仿真实验项目</span>
+                    <span>虚拟仿真实验项目</span>
                     <div class="project-change">
                         <img :src="proCurrentIndex === 1 ? leftUndoIcon : leftDoIcon"
                              class="change-button"
@@ -157,10 +157,10 @@
                              :key="`video_list_${k}`">
                             <div>
                                 <img src="../../static/images/home_video_parse.png"
-                                     class="source-video-parse">
-                                <img :src="v.showImg"
-                                     class="project-bg"
+                                     class="source-video-parse"
                                      @click="jumpToVideo(v.id)">
+                                <img :src="v.showImg"
+                                     class="project-bg">
                             </div>
 
                             <div class="source-desc">{{v.name}}</div>
@@ -721,7 +721,7 @@ export default {
     }
     .home-guide {
         background: #ededed;
-        padding: 30px 0;
+        padding: 50px 0 30px;
         .guide-list {
             display: flex;
             flex-direction: row;

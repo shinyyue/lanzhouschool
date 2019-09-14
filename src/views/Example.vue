@@ -56,7 +56,7 @@ export default {
     },
     methods: {
         jumpToDetail(id) {
-            this.$router.push(`/exampledetail?id=${id}`)
+            this.$router.push(`/videodetail?id=${id}`)
         },
         changeCount(count) {
             this.pageCount = count

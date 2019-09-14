@@ -189,6 +189,14 @@ export default {
     #expeirment {
         background: #fff;
         position: relative;
+        .el-dialog__headerbtn {
+            width: 30px;
+            height: 30px;
+            top:9px;
+        }
+        .el-dialog__headerbtn .el-dialog__close {
+            color: #fff;
+        }
         .app-head {
             position: absolute;
             top: 0;
@@ -281,11 +289,11 @@ export default {
         }
         .expeirment-title {
             color: #FFFFFF;
-            font-size: 30px;
+            font-size: 24px;
         }
         .expeirment-content {
             color: #FFFFFF;
-            font-size: 18px;
+            font-size: 14px;
             margin: 20px 0;
             width: calc(100% - 450px);
             max-width: 800px;
@@ -311,7 +319,7 @@ export default {
         }
         .home-guide {
             background: #ededed;
-            padding: 30px 0;
+            padding: 15px 0;
             .guide-list {
                 display: flex;
                 flex-direction: row;

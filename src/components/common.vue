@@ -97,11 +97,11 @@ export default {
                     id: 5,
                     path: '/example'
                 },
-                {
-                    name: '资源共享',
-                    id: 6,
-                    path: '/source'
-                },
+                // {
+                //     name: '资源共享',
+                //     id: 6,
+                //     path: '/source'
+                // },
 
                 {
                     name: '视频锦集',
