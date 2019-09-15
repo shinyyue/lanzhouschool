@@ -254,7 +254,7 @@ export default {
                     key: 5,
                     showImg: require('../../static/images/plat.png'),
                     content: '虚拟仿真实验教学平台',
-                    path: 'http://47.105.130.130:8099/index.html#/login'
+                    path: 'http://202.201.21.44:8099/index.html#/login'
                 },
                 {
                     key: 6,
@@ -409,7 +409,7 @@ export default {
             this.$router.push('/rules')
         },
         jumpToXuNiWeb() {
-            window.location.href = 'http://47.105.130.130:8099/index.html'
+            window.location.href = 'http://202.201.21.44:8099/index.html'
         },
         jumpToRulesDetail(item) {
             const index = item.columnId === 17 ? 1 : 0
