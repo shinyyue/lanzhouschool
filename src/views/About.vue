@@ -14,10 +14,6 @@
                          v-html="details.content">
                     </div>
                 </div>
-                <!-- 中心风貌 -->
-                <div v-show="this.currentIndex === 1">
-
-                </div>
             </div>
         </div>
     </common>

@@ -37,7 +37,7 @@
              v-show="showCrumbs">
             <img src="../../static/images/content-bg.jpg">
         </div>
-        <div class="app-content">
+        <div class="app-content" style="height: calc(100% - 630px)">
             <slot></slot>
         </div>
         <div class="footer">

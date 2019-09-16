@@ -303,10 +303,12 @@ export default {
                             this.proPage++
                             this.getProjectList()
                         }
-                        this.projectsList = [
-                            ...this.projectsList,
-                            ...[res.data.items]
-                        ]
+                        if (res.data.items.length > 0) {
+                            this.projectsList = [
+                                ...this.projectsList,
+                                ...[res.data.items]
+                            ]
+                        }
                     }
                 })
         },
@@ -365,10 +367,12 @@ export default {
                                 this.videoPage++
                                 this.getVideoList()
                             }
-                            this.videoList = [
-                                ...this.videoList,
-                                ...[res.data.items]
-                            ]
+                            if (res.data.items.length > 0) {
+                                this.videoList = [
+                                    ...this.videoList,
+                                    ...[res.data.items]
+                                ]
+                            }
                         }
                     }
                 })

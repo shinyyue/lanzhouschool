@@ -115,7 +115,7 @@ export default {
         getList(columnId) {
             const data = {
                 page: this.pageCount,
-                rows: 20,
+                rows: 10,
                 collegeId: 0,
                 columnId: columnId
             }

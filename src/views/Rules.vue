@@ -35,7 +35,8 @@
                 </ul>
                 <div class="my-pagination">
                     <button :class="{'disable': pageCount === 1}"
-                            :disabled="pageCount === 1">首页</button>
+                            :disabled="pageCount === 1"
+                            @click="changeCount(1)">首页</button>
 
                     <el-pagination background
                                    :current-page="pageCount"
@@ -43,8 +44,9 @@
                                    layout="prev, pager, next"
                                    :total="total">
                     </el-pagination>
-                    <button :class="{'disable': pageCount === 100}"
-                            :disabled="pageCount === 100">尾页</button>
+                    <button :class="{'disable': pageCount === Math.ceil(total / 10)}"
+                            :disabled="pageCount === Math.ceil(total / 10)"
+                            @click="changeCount(Math.ceil(total / 10))">尾页</button>
                 </div>
             </div>
         </div>
@@ -86,6 +88,7 @@ export default {
         },
         changeCount(index) {
             this.pageCount = index
+            this.currentIndex === 0 ? this.getList() : this.getList2()
         },
         jumpToDetail(id, currentIndex) {
             this.$router.push(`/rulesdetail?id=${id}&index=${currentIndex}`)
@@ -93,7 +96,7 @@ export default {
         getList() {
             const data = {
                 page: this.pageCount,
-                rows: 20,
+                rows: 10,
                 collegeId: 0,
                 columnId: 16
             }
@@ -107,7 +110,7 @@ export default {
         getList2() {
             const data = {
                 page: this.pageCount,
-                rows: 20,
+                rows: 10,
                 collegeId: 0,
                 columnId: 17
             }

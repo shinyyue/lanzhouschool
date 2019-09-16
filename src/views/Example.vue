@@ -14,7 +14,8 @@
                 </ul>
                 <div class="my-pagination">
                     <button :class="{'disable': pageCount === 1}"
-                            :disabled="pageCount === 1">首页</button>
+                            :disabled="pageCount === 1"
+                            @click="changeCount(1)">首页</button>
 
                     <el-pagination background
                                    :current-page="pageCount"
@@ -22,8 +23,9 @@
                                    layout="prev, pager, next"
                                    :total="total">
                     </el-pagination>
-                    <button :class="{'disable': pageCount === 100}"
-                            :disabled="pageCount === 100">尾页</button>
+                    <button :class="{'disable': pageCount === Math.ceil(total / 10)}"
+                            :disabled="pageCount === Math.ceil(total / 10)"
+                            @click="changeCount(Math.ceil(total / 10))">尾页</button>
                 </div>
             </div>
         </div>
