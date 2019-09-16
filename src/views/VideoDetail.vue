@@ -38,7 +38,7 @@ export default {
                     this.details.updateTime =
                         this.details.updateTime &&
                         new Date(this.details.updateTime).format(
-                            'yyyy-MM-dd HH:mm:ss'
+                            'yyyy-MM-dd hh:mm:ss'
                         )
                 })
         }
