@@ -136,7 +136,7 @@ export default {
     mounted() {
         const query = this.$route.query
         if (query && query.index) {
-            this.currentIndex = Number(query.index)
+            this.currentIndex = Number(query.index) || 0
         }
     }
 }

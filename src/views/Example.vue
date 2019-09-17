@@ -20,12 +20,13 @@
                     <el-pagination background
                                    :current-page="pageCount"
                                    @current-change="changeCount"
+                                   :page-size="9"
                                    layout="prev, pager, next"
                                    :total="total">
                     </el-pagination>
-                    <button :class="{'disable': pageCount === Math.ceil(total / 10)}"
-                            :disabled="pageCount === Math.ceil(total / 10)"
-                            @click="changeCount(Math.ceil(total / 10))">尾页</button>
+                    <button :class="{'disable': pageCount === Math.ceil(total / 9)}"
+                            :disabled="pageCount === Math.ceil(total / 9)"
+                            @click="changeCount(Math.ceil(total / 9))">尾页</button>
                 </div>
             </div>
         </div>
@@ -67,7 +68,7 @@ export default {
         getList() {
             const data = {
                 page: this.pageCount,
-                rows: 12,
+                rows: 9,
                 collegeId: 0,
                 columnId: 7
             }

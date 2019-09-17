@@ -38,9 +38,9 @@
                                        layout="prev, pager, next"
                                        :total="total">
                         </el-pagination>
-                        <button :class="{'disable': pageCount === (Math.floor(total / 9) + 1)}"
-                                :disabled="pageCount === (Math.floor(total / 9) + 1)"
-                                @click="jumpTo(Math.floor(total / 9) + 1)">尾页</button>
+                        <button :class="{'disable': pageCount === (Math.ceil(total / 9))}"
+                                :disabled="pageCount === (Math.ceil(total / 9))"
+                                @click="jumpTo(Math.ceil(total / 9))">尾页</button>
                     </div>
 
                 </div>
